@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_01_185353) do
+ActiveRecord::Schema.define(version: 2020_04_01_200702) do
+
+  create_table "category_items", force: :cascade do |t|
+    t.integer "genre_id", null: false
+    t.integer "product_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["genre_id"], name: "index_category_items_on_genre_id"
+    t.index ["product_id"], name: "index_category_items_on_product_id"
+  end
 
   create_table "customers", force: :cascade do |t|
     t.string "first_name"
@@ -28,6 +37,17 @@ ActiveRecord::Schema.define(version: 2020_04_01_185353) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "line_items", force: :cascade do |t|
+    t.integer "order_id", null: false
+    t.integer "product_id", null: false
+    t.integer "quantity"
+    t.decimal "price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_line_items_on_order_id"
+    t.index ["product_id"], name: "index_line_items_on_product_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -61,6 +81,16 @@ ActiveRecord::Schema.define(version: 2020_04_01_185353) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "province_rates", force: :cascade do |t|
+    t.integer "province_id", null: false
+    t.integer "rate_id", null: false
+    t.decimal "amount"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["province_id"], name: "index_province_rates_on_province_id"
+    t.index ["rate_id"], name: "index_province_rates_on_rate_id"
+  end
+
   create_table "provinces", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -73,4 +103,32 @@ ActiveRecord::Schema.define(version: 2020_04_01_185353) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "tax_items", force: :cascade do |t|
+    t.integer "order_id", null: false
+    t.integer "rate_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_tax_items_on_order_id"
+    t.index ["rate_id"], name: "index_tax_items_on_rate_id"
+  end
+
+  create_table "type_items", force: :cascade do |t|
+    t.integer "platform_id", null: false
+    t.integer "product_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["platform_id"], name: "index_type_items_on_platform_id"
+    t.index ["product_id"], name: "index_type_items_on_product_id"
+  end
+
+  add_foreign_key "category_items", "genres"
+  add_foreign_key "category_items", "products"
+  add_foreign_key "line_items", "orders"
+  add_foreign_key "line_items", "products"
+  add_foreign_key "province_rates", "provinces"
+  add_foreign_key "province_rates", "rates"
+  add_foreign_key "tax_items", "orders"
+  add_foreign_key "tax_items", "rates"
+  add_foreign_key "type_items", "platforms"
+  add_foreign_key "type_items", "products"
 end
