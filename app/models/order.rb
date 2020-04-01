@@ -1,5 +1,5 @@
 class Order < ApplicationRecord
-  has_many :customers
+  belongs_to :customer
   has_many :line_items
   has_many :products, through: :line_items
   has_many :tax_items
