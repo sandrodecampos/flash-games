@@ -1,3 +1,4 @@
 class Customer < ApplicationRecord
-  belongs_to :order
+  has_many :orders
+  belongs_to :user
 end
