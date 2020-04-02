@@ -1,2 +1,18 @@
-<h1>Products#index</h1>
-<p>Find me in app/views/products/index.html.erb</p>
+<div class="album py-5 bg-light">
+  <div class="container">
+    <div class="row row-cols-1 row-cols-md-3">
+      <% @products.each do |product| %>
+      <div class="col mb-4">
+        <div class="card mb-4 shadow-sm text-right" style="width: 21rem; min-height: 320px">
+          <%= link_to (image_tag product.image, :class => "card-img-top", :alt => "#{product.name} image"), product %>
+          <div class="card-body">
+            <h5 class="card-title"><%= product.name %></h5>
+            <p class="card-text"><%= product.genres.name %></p>
+            <a href="#" class="btn btn-primary">$59.99</a>
+          </div>
+        </div>
+        </div>
+        <% end %>
+    </div>
+  </div>
+</div>
