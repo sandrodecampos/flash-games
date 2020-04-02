@@ -6,4 +6,6 @@ class Product < ApplicationRecord
   has_many :category_items
   has_many :genres, through: :category_items
   has_one_attached :image
+
+  paginates_per 6
 end
