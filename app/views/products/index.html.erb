@@ -9,7 +9,7 @@
           <%= link_to (image_tag product.image, :class => "card-img-top", :alt => "#{product.name} image"), product %>
           <div class="card-body">
             <h5 class="card-title"><%= product.name %></h5>
-            <p class="card-text"><%= product.genres.name %></p>
+            <p class="card-text"><%= product.genres.map { |p| p.name }.join(", ") %></p>
             <a href="#" class="btn btn-primary">$59.99</a>
           </div>
         </div>

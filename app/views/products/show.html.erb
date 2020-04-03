@@ -14,7 +14,7 @@
               <tbody>
                 <tr>
                   <td class="text-bold">Genres</td>
-                  <td>Action, RPG</td>
+                  <td><%= @product.genres.map { |p| p.name }.join(", ") %></td>
                 </tr>
                 <tr>
                   <td>Developer</td>
