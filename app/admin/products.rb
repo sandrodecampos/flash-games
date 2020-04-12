@@ -34,7 +34,7 @@ ActiveAdmin.register Product do
           f.has_many :category_items, allow_destroy: true do |n_f|
             n_f.input :genre
           end
-          f.input :image
+          f.input :image, as: :file
         end
         f.actions
 
