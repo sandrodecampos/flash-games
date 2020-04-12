@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-  get 'pages/index'
-  get 'pages/show'
   resources :products, only: [:index, :show]
+  resources :pages, only: :show
   # get '/products', to: 'products#index'
   # get '/products/:id', to: 'products#show', id /\d/
 
@@ -9,5 +8,7 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
+  get 'about', to: 'pages#about', as: 'about'
+  get 'contact', to: 'pages#contact', as: 'contact'
   root to: 'products#index'
 end
