@@ -8,10 +8,10 @@ class Product < ApplicationRecord
   accepts_nested_attributes_for :category_items, allow_destroy: true
   has_one_attached :image
 
-  validates :name, :description, :release_date, presence: true
+  validates :name, presence: true
   validates :name, length: { maximum: 30 }
   validates :description, length: { maximum: 500 }
   validates :price, numericality: true
 
-  paginates_per 6
+  paginates_per 9
 end
