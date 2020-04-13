@@ -1,3 +1,20 @@
 // Place all the styles related to the products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.cont-products {
+  margin-top: 100px;
+  min-height: 900px;
+}
+
+.cont-products-info{
+  min-height: 450px;
+}
+
+.prod-details-body, .card-product {
+  margin-left: 50px;
+}
+
+.home-link{
+  margin: 100px;
+}
