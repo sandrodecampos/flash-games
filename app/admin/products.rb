@@ -1,5 +1,5 @@
 ActiveAdmin.register Product do
-  permit_params :name, :description, :developer, :publisher, :release_date, :platform_id, :image,
+  permit_params :name, :description, :developer, :publisher, :release_date, :platform_id, :image, :price,
                 category_items_attributes: [:id, :genre_id, :product_id]
 
   index do
@@ -19,6 +19,7 @@ ActiveAdmin.register Product do
     end
     column :created_at
     column :updated_at
+    column :price
     actions # view, edit, delete
  end
 
@@ -30,6 +31,7 @@ ActiveAdmin.register Product do
           f.input :developer
           f.input :publisher
           f.input :release_date
+          f.input :price
           # f.input :genres, as: :check_boxes
           f.has_many :category_items, allow_destroy: true do |n_f|
             n_f.input :genre
