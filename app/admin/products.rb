@@ -6,7 +6,12 @@ ActiveAdmin.register Product do
     selectable_column # Checkbox
     column :id
     column :image do |product| # include thumb image
-      image_tag(product.image,width:100,height:50)
+      if product.image.blank?
+        image_tag("https://via.placeholder.com/100X50")
+      else
+        image_tag(product.image,width:100,height:50)
+      end
+
     end
     column :name
     # column :description

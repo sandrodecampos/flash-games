@@ -6,7 +6,11 @@
       <% @products.each do |product| %>
       <div class="col mb-4">
         <div class="card mb-4 shadow-sm text-right" style="width: 21rem; min-height: 320px">
-          <%= link_to (image_tag product.image, :class => "card-img-top", :alt => "#{product.name} image"), product %>
+          <% if product.image.blank? %>
+            <%= link_to (image_tag "https://via.placeholder.com/335X150", :class => "card-img-top", :alt => "placeholder image"), product %>
+          <% else %>
+            <%= link_to (image_tag product.image, :class => "card-img-top", :alt => "#{product.name} image"), product %>
+          <% end %>
           <div class="card-body">
             <h5 class="card-title"><%= product.name %></h5>
             <p class="card-text"><%= product.genres.map { |p| p.name }.join(", ") %></p>

@@ -35,11 +35,12 @@
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0" action="/products/search_results">
-        <input class="form-control mr-sm-2" id="query" name="query" type="search" placeholder="Search" aria-label="Search">
+        <input class="form-control mr-sm-2" id="query" name="query" type="search" placeholder="Search..." aria-label="Search">
         <select class="form-control form-control-md mr-2">
+            <option value="None">-Select-</option>
           <% genres = Genre.all %>
           <% genres.each do |genre|%>
-            <option><%= genre.name %></option>
+            <option value=<%= genre.name %>><%= genre.name %></option>
           <% end %>
         </select>
         <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
