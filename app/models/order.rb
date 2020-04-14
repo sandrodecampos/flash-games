@@ -6,5 +6,4 @@ class Order < ApplicationRecord
   has_many :rates, through: :tax_items, dependent: :destroy
 
   validates :subtotal, :total, presence: true, numericality: true
-
 end
