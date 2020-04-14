@@ -21,10 +21,15 @@
           <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Games<span class="sr-only">(current)</span>
           </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="query" name="query" action="search">
             <a class="dropdown-item" href="#">On Sale</a>
             <a class="dropdown-item" href="#">New</a>
             <a class="dropdown-item" href="#">Recently Updated</a>
+            <div class="dropdown-divider"></div>
+            <% genres = Genre.all %>
+            <% genres.each do |genre|%>
+            <a class="dropdown-item" href="products/<%= genre.name.downcase %>"><%= genre.name %></a>
+            <% end %>
           </div>
         </li>
         <li class="nav-item">
@@ -34,10 +39,12 @@
           <a class="nav-link" href="#">Pre Order Now</a>
         </li>
       </ul>
+      <form class="form-inline mr-5 my-lg-0" action="/products/search">
+        <input class="form-control mr-sm-2" id="query" name="query" type="search" placeholder="Search by any word" aria-label="Search" required>
+      </form>
       <form class="form-inline my-2 my-lg-0" action="/products/search_results">
-        <input class="form-control mr-sm-2" id="query" name="query" type="search" placeholder="Search..." aria-label="Search">
-        <select class="form-control form-control-md mr-2">
-            <option value="None">-Select-</option>
+        <select class="form-control form-control-md mr-2" id="query" name="query" method="get" required>
+            <option value="None">-Category-</option>
           <% genres = Genre.all %>
           <% genres.each do |genre|%>
             <option value=<%= genre.name %>><%= genre.name %></option>
@@ -45,9 +52,9 @@
         </select>
         <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
       </form>
-
     </div>
     </nav>
+
     <%= yield %>
 
   <footer class="footer">

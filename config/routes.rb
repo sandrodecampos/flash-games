@@ -1,8 +1,17 @@
 Rails.application.routes.draw do
-  resources :products, only: [:index, :show]
-  resources :pages, only: :show
+
   # get '/products', to: 'products#index'
-  # get '/products/:id', to: 'products#show', id /\d/
+  # get '/products/:id', to: 'products#show', id /\d+/
+  resources :products, only: [:show, :index] do
+    collection do
+      get 'search_results'
+    end
+    collection do
+      get 'search'
+    end
+  end
+
+  resources :pages, only: :show
 
   devise_for :users
   devise_for :admin_users, ActiveAdmin::Devise.config

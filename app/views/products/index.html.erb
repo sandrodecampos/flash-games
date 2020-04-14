@@ -1,25 +1,2 @@
-<div class="album py-5 bg-light">
-
-  <div class="container cont-products">
-    <%= paginate @products %>
-    <div class="row row-cols-1 row-cols-md-3">
-      <% @products.each do |product| %>
-      <div class="col mb-4">
-        <div class="card mb-4 shadow-sm text-right" style="width: 21rem; min-height: 320px">
-          <% if product.image.blank? %>
-            <%= link_to (image_tag "https://via.placeholder.com/335X150", :class => "card-img-top", :alt => "placeholder image"), product %>
-          <% else %>
-            <%= link_to (image_tag product.image, :class => "card-img-top", :alt => "#{product.name} image"), product %>
-          <% end %>
-          <div class="card-body">
-            <h5 class="card-title"><%= product.name %></h5>
-            <p class="card-text"><%= product.genres.map { |p| p.name }.join(", ") %></p>
-            <a href="#" class="btn btn-primary">C$ <%= product.price %></a>
-          </div>
-        </div>
-        </div>
-        <% end %>
-    </div>
-  </div>
-
-</div>
+<%= render partial: 'product',
+           locals: { name_is_link: true } %>

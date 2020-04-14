@@ -1,1 +1,45 @@
-<%= render @product %>
+<div class="album py-5 bg-light">
+  <div class="container cont-products-info">
+    <h1 class="mb-5"><%= @product.name %></h1>
+    <div class="card card-product mb-3" style="max-width: 900px;">
+      <div class="row no-gutters">
+        <div class="col-md-6">
+        <% if @product.image.blank? %>
+          <%= link_to (image_tag "https://via.placeholder.com/335X150", :class => "card-img-top", :alt => "placeholder image"), @product %>
+        <% else %>
+          <%= image_tag @product.image, :class => "card-img", :alt => "#{@product.name} image" %>
+        <% end %>
+          <p class="card-text text-justify p-3"><%= @product.description %></p>
+        </div>
+        <div class="col-md-6">
+          <div class="card-body prod-details-body">
+
+            <table class="table table-bordered table-striped">
+              <tbody>
+                <tr>
+                  <td class="text-bold">Genres</td>
+                  <td><%= @product.genres.map { |p| p.name }.join(", ") %></td>
+                </tr>
+                <tr>
+                  <td>Developer</td>
+                  <td><%= @product.developer %></td>
+                </tr>
+                <tr>
+                  <td>Publisher</td>
+                  <td><%= @product.publisher %></td>
+                </tr>
+                <tr>
+                  <td>Release Date</td>
+                  <td><%= @product.release_date %></td>
+                </tr>
+              </tbody>
+            </table>
+            <button type="button" class="btn btn-light">C$ <%= @product.price %></button>
+            <a href="#" class="btn btn-primary">Add to Cart</a>
+          </div>
+        </div>
+      </div>
+    </div>
+ </div>
+ <p class="home-link"><%= link_to 'Home', root_path %></p>
+</div>

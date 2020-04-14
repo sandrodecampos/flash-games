@@ -1,45 +1,23 @@
 <div class="album py-5 bg-light">
-  <div class="container cont-products-info">
-    <h1 class="mb-5"><%= @product.name %></h1>
-    <div class="card card-product mb-3" style="max-width: 900px;">
-      <div class="row no-gutters">
-        <div class="col-md-6">
-        <% if @product.image.blank? %>
-          <%= link_to (image_tag "https://via.placeholder.com/335X150", :class => "card-img-top", :alt => "placeholder image"), product %>
-        <% else %>
-          <%= image_tag @product.image, :class => "card-img", :alt => "#{@product.name} image" %>
-        <% end %>
-          <p class="card-text text-justify p-3"><%= @product.description %></p>
-        </div>
-        <div class="col-md-6">
-          <div class="card-body prod-details-body">
-
-            <table class="table table-bordered table-striped">
-              <tbody>
-                <tr>
-                  <td class="text-bold">Genres</td>
-                  <td><%= @product.genres.map { |p| p.name }.join(", ") %></td>
-                </tr>
-                <tr>
-                  <td>Developer</td>
-                  <td><%= @product.developer %></td>
-                </tr>
-                <tr>
-                  <td>Publisher</td>
-                  <td><%= @product.publisher %></td>
-                </tr>
-                <tr>
-                  <td>Release Date</td>
-                  <td><%= @product.release_date %></td>
-                </tr>
-              </tbody>
-            </table>
-            <button type="button" class="btn btn-light">C$ <%= product.price %></button>
-            <a href="#" class="btn btn-primary">Add to Cart</a>
+  <div class="container cont-products">
+    <%= paginate @products %>
+    <div class="row row-cols-1 row-cols-md-3">
+      <% @products.each do |product| %>
+      <div class="col mb-4">
+        <div class="card mb-4 shadow-sm text-right" style="width: 21rem; min-height: 320px">
+          <% if product.image.blank? %>
+            <%= link_to (image_tag "https://via.placeholder.com/335X150", :class => "card-img-top", :alt => "placeholder image"), product %>
+          <% else %>
+            <%= link_to (image_tag product.image, :class => "card-img-top", :alt => "#{product.name} image"), product %>
+          <% end %>
+          <div class="card-body">
+            <h5 class="card-title"><%= product.name %></h5>
+            <p class="card-text"><%= product.genres.map { |p| p.name }.join(", ") %></p>
+            <a href="#" class="btn btn-primary">C$ <%= product.price %></a>
           </div>
         </div>
-      </div>
+        </div>
+        <% end %>
     </div>
- </div>
- <p class="home-link"><%= link_to 'Home', root_path %></p>
+  </div>
 </div>
