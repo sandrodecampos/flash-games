@@ -14,4 +14,12 @@ class Product < ApplicationRecord
   validates :price, numericality: true
 
   paginates_per 12
+
+  def thumbnail_index
+    return self.image.variant(resize: "334X155!").processed
+  end
+
+  def thumbnail_show
+    return self.image.variant(resize: "335X150!").processed
+  end
 end
