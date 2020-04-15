@@ -3,12 +3,21 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 .cont-products {
-  margin-top: 100px;
   min-height: 900px;
+  max-width: 1500px;
 }
 
 .cont-products-info{
-  min-height: 450px;
+  min-height: 650px;
+}
+
+.card-prod {
+  width: 21rem;
+  min-height: 350px;
+}
+
+.card-price {
+  margin: auto auto;
 }
 
 .prod-details-body, .card-product {
@@ -18,3 +27,8 @@
 .home-link{
   margin: 100px;
 }
+
+.card-title, .card-text {
+  min-height: 50px;
+}
+

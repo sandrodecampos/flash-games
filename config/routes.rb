@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   # get '/products', to: 'products#index'
   # get '/products/:id', to: 'products#show', id /\d+/
-  resources :products, only: [:show, :index] do
+  resources :products, only: [:show, :index, :home] do
     collection do
       get 'search_results'
     end
@@ -19,5 +19,5 @@ Rails.application.routes.draw do
 
   get 'about', to: 'pages#about', as: 'about'
   get 'contact', to: 'pages#contact', as: 'contact'
-  root to: 'products#index'
+  root 'products#home'
 end
