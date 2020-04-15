@@ -22,14 +22,10 @@
             Games<span class="sr-only">(current)</span>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="query">
-            <a class="dropdown-item" href="#">On Sale</a>
-            <a class="dropdown-item" href="#">New</a>
-            <a class="dropdown-item" href="#">Recently Updated</a>
+            <a class="dropdown-item" href="/products">All Games</a>
             <div class="dropdown-divider"></div>
-            <% genres = Genre.all %>
-            <% genres.each do |genre|%>
-            <a class="dropdown-item" href="products/<%= genre.name.downcase %>"><%= genre.name %></a>
-            <% end %>
+            <a class="dropdown-item" href=<%= days_ago_products_path %>>New</a>
+            <a class="dropdown-item" href=<%= recently_updated_products_path %>>Recently Updated</a>
           </div>
         </li>
         <li class="nav-item">

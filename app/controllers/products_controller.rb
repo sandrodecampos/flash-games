@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   def index
-    @products = Product.order(:id).page(params[:page])
+    @products = Product.includes(:category_items).order(:id).page(params[:page])
     add_breadcrumb 'Home', :root_path
     add_breadcrumb "Products", :products_path
   end
@@ -22,7 +22,7 @@ class ProductsController < ApplicationController
 
   def search_results
     @query = params[:query2]
-    @products = Product.joins(category_items: :genre)
+    @products = Product.includes(category_items: :genre)
                        .where(genres: { name: @query })
                        .page(params[:page])
     add_breadcrumb 'Home', :root_path
@@ -30,8 +30,20 @@ class ProductsController < ApplicationController
   end
 
   def home
-    @products = Product.order(:id).page(params[:page])
+    @products = Product.includes(:category_items).order(:id).page(params[:page])
     add_breadcrumb 'Home', :root_path
+  end
+
+  def days_ago
+    @products = Product.includes(:category_items).where('created_at > ?', 1.days.ago).page(params[:page])
+    add_breadcrumb 'Home', :root_path
+    add_breadcrumb "Products"
+  end
+
+  def recently_updated
+    @products = Product.includes(:category_items).where('updated_at > ?', 1.days.ago).page(params[:page])
+    add_breadcrumb 'Home', :root_path
+    add_breadcrumb "Products"
   end
 
 end

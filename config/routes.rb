@@ -9,6 +9,12 @@ Rails.application.routes.draw do
     collection do
       get 'search'
     end
+    collection do
+      get 'days_ago'
+    end
+    collection do
+      get 'recently_updated'
+    end
   end
 
   resources :pages, only: :show

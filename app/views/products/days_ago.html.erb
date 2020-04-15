@@ -1,0 +1,10 @@
+<div class="album py-5 bg-light">
+  <div class="container cont-products">
+  <% if @products.size == 0 %>
+  <h1>Your search for NEW GAMES returned <%= pluralize(@products.size, 'result') %>.</h1>
+  <% else %>
+      <%= render partial: 'product',
+                 locals: { name_is_link: true } %>
+  <% end %>
+  </div>
+</div>
