@@ -13,5 +13,5 @@ class Product < ApplicationRecord
   validates :description, length: { maximum: 500 }
   validates :price, numericality: true
 
-  paginates_per 9
+  paginates_per 12
 end
