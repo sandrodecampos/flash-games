@@ -7,9 +7,9 @@ ActiveAdmin.register Product do
     column :id
     column :image do |product| # include thumb image
       if product.image.blank?
-        image_tag("https://via.placeholder.com/100X50")
+        image_tag("https://via.placeholder.com/100x50")
       else
-        image_tag(product.image,width:100,height:50)
+        image_tag(product.image.variant(resize: "100x50!").processed)
       end
 
     end

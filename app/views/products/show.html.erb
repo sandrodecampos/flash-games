@@ -7,7 +7,7 @@
         <% if @product.image.blank? %>
           <%= link_to (image_tag "https://via.placeholder.com/335X150", :class => "card-img-top", :alt => "placeholder image"), @product %>
         <% else %>
-          <%= image_tag @product.image, :class => "card-img", :alt => "#{@product.name} image" %>
+          <%= image_tag @product.thumbnail_show, :class => "card-img", :alt => "#{@product.name} image" %>
         <% end %>
           <p class="card-text text-justify p-3"><%= @product.description %></p>
         </div>
